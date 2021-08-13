@@ -21,7 +21,6 @@ export default observer(function ActivityList() {
                     ))}
                 </Fragment>
             ))}
-            <h1>test</h1>
         </>
 
     )

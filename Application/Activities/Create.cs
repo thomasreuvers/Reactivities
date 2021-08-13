@@ -38,12 +38,13 @@ namespace Application.Activities
             public Handler(DataContext context, IUserAccessor userAccessor)
             {
                 _context = context;
+                _userAccessor = userAccessor;
             }
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
                 var user = await _context.Users
-                    .FirstOrDefaultAsync(x => x.UserName == _userAccessor.GetUserName());
+                    .FirstOrDefaultAsync(x => x.UserName == _userAccessor.GetUserName(), cancellationToken: cancellationToken);
 
                 var attendee = new ActivityAttendee
                 {
